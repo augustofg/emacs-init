@@ -206,6 +206,7 @@
 (global-set-key (kbd "C-ç") 'ido-switch-buffer)
 
 ;; Irony configuration
+(setq company-irony-ignore-case t)
 (add-hook 'c++-mode-hook 'irony-mode)
 (add-hook 'c-mode-hook 'irony-mode)
 (add-hook 'objc-mode-hook 'irony-mode)
