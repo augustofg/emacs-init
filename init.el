@@ -190,6 +190,11 @@
 ;; Enables flyspell on latex files
 (require 'tex)
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
+(add-hook 'LaTeX-mode-hook '(lambda ()
+							  (interactive)
+							  (local-set-key (kbd "C-c m") '(lambda ()
+															  (interactive)
+															  (my-insert-pair ?$ ?$)))))
 
 ;; Enables ido
 (require 'ido)
