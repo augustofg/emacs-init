@@ -440,7 +440,7 @@
   (other-window (- 1))
   (split-window-vertically)
   (shell)
-  (other-window 1)
+  (other-window -1)
   (switch-to-buffer "*scratch*")
   (other-window (- 1)))
 (global-set-key (kbd "C-c w") 'default-layout)
