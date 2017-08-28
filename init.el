@@ -315,18 +315,16 @@
 ;; Other functions ;;
 
 ;; Automatic header creation
-
-;; Automatic header creation
 (defun create-c-header (headername)
   "Create a simple C header template"
   (interactive "sHeader name: ")
   (let ((finalname))
 	(if (string= (substring headername -2 nil) ".h")
 		(setq finalname (substring headername 0 -2))
-	  (setq finalname headername))
-	(if (string= (substring headername -4 nil) ".hpp")
-		(setq finalname (substring headername 0 -4))
-	  (setq finalname headername))
+	  (progn
+		(if (string= (substring headername -4 nil) ".hpp")
+			(setq finalname (substring headername 0 -4))
+		  (setq finalname headername))))
 	(create-file-buffer (concat finalname ".h"))
 	(switch-to-buffer (concat finalname ".h"))
 	(insert "/*\n * Description\n */\n")
@@ -340,10 +338,10 @@
   (let ((finalname))
 	(if (string= (substring headername -2 nil) ".h")
 		(setq finalname (substring headername 0 -2))
-	  (setq finalname headername))
-	(if (string= (substring headername -4 nil) ".hpp")
-		(setq finalname (substring headername 0 -4))
-	  (setq finalname headername))
+	  (progn
+		(if (string= (substring headername -4 nil) ".hpp")
+			(setq finalname (substring headername 0 -4))
+		  (setq finalname headername))))
 	(create-file-buffer (concat finalname ".hpp"))
 	(switch-to-buffer (concat finalname ".hpp"))
 	(insert "/*\n * Description\n */\n")
