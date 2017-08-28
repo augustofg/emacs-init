@@ -210,6 +210,15 @@
 ;; Ido buffer navigation keystroke
 (global-set-key (kbd "C-ç") 'ido-switch-buffer)
 
+;; Rust autocomplete
+(add-hook 'rust-mode-hook #'racer-mode)
+(add-hook 'racer-mode-hook #'eldoc-mode)
+(add-hook 'racer-mode-hook #'company-mode)
+(require 'rust-mode)
+(define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+(setq company-tooltip-align-annotations t)
+(setq racer-rust-src-path "/usr/src/rust/src/")
+
 ;; Irony configuration
 (setq company-irony-ignore-case t)
 (add-hook 'c++-mode-hook 'irony-mode)
