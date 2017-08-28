@@ -249,7 +249,7 @@
 (global-set-key (kbd "C-c d") 'duplicate-line)
 
 ;; Curly brackets insertion
-(defun insert-curly-brackets()
+(defun insert-curly-braces()
   (interactive)
   (end-of-line)
   (newline)
@@ -262,7 +262,7 @@
   (indent-according-to-mode)
   (previous-line)
   (end-of-line))
-(global-set-key (kbd "C-c c") 'insert-curly-brackets)
+(global-set-key (kbd "C-c c") 'insert-curly-braces)
 
 ;; Insert pairs
 (defun my-insert-pair (open close)
@@ -277,6 +277,12 @@
 	(insert open close))
   (backward-char))
 
+(defun insert-curly-braces-next ()
+  "Insert a pair of curly-braces next to each other"
+  (interactive)
+  (my-insert-pair ?{ ?}))
+(global-set-key (kbd "C-c n") 'insert-curly-braces-next)
+
 ;; Parenthesis insertion
 (defun paren-insert()
   (interactive)
@@ -284,10 +290,16 @@
 (global-set-key (kbd "C-c p") 'paren-insert)
 
 ;; Double quotes insertion
-(defun insert-quotes()
+(defun insert-double-quotes()
   (interactive)
   (my-insert-pair  ?" ?"))
-(global-set-key (kbd "C-c a") 'insert-quotes)
+(global-set-key (kbd "C-c a") 'insert-double-quotes)
+
+;; Simple quotes insertion
+(defun insert-simple-quotes()
+  (interactive)
+  (my-insert-pair  ?' ?'))
+(global-set-key (kbd "C-c x") 'insert-simple-quotes)
 
 ;; Braket insertion
 (defun insert-brackets()
