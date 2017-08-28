@@ -177,10 +177,10 @@
 ;; Sets a delay of 0.3 seconds for company
 (setq company-idle-delay 0.3)
 
-;; Enable the spelling checker on commit messages
+;; Enable the spell checker on commit messages
 (add-hook 'git-commit-mode-hook #'(lambda ()
-									 (ispell-change-dictionary "en_US")
-									 (flyspell-mode)))
+									(ispell-change-dictionary "en_US")
+									(flyspell-mode)))
 
 ;; Enables company-jedi
 (defun my/python-mode-hook ()
