@@ -150,6 +150,9 @@
 ;; Change window keystroke
 (global-set-key (kbd "M-ç") 'other-window)
 
+;; Compile Command
+(global-set-key "\C-x\C-m" 'compile)
+
 ;;;;
 
 ;; Packages config ;;
