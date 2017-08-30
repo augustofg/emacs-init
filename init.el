@@ -174,8 +174,8 @@
   '(add-to-list 'company-backends 'company-irony))
 (add-hook 'after-init-hook 'global-company-mode)
 
-;; Sets a delay of 0.3 seconds for company
-(setq company-idle-delay 0.3)
+;; Sets a delay of 0.2 seconds for company
+(setq company-idle-delay 0.2)
 
 ;; Enable the spell checker on commit messages
 (add-hook 'git-commit-mode-hook #'(lambda ()
