@@ -73,20 +73,10 @@
 ;; sha256sum modified: 0620c07c70373d3ce4ddca072de8bdfcac4438810d2acf46db8c72b0a125140d
 
 (when (display-graphic-p) ;;Only on gui
-  (custom-set-variables
-   ;; custom-set-variables was added by Custom.
-   ;; If you edit it by hand, you could mess it up, so be careful.
-   ;; Your init file should contain only one such instance.
-   ;; If there is more than one, they won't work right.
-   '(custom-enabled-themes (quote (waher)))
-   '(custom-safe-themes
-	 (quote
-	  ("0620c07c70373d3ce4ddca072de8bdfcac4438810d2acf46db8c72b0a125140d" default))))
-  ;; Disable scrollbar
+  ;; Starts emacs maximixed
+  (add-to-list 'default-frame-alist '(fullscreen . maximized))
+  ;; Disable the scroll bar
   (scroll-bar-mode -1))
-
-;; Starts emacs maximixed
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
   
 ;; Disable tool-bar
 (tool-bar-mode -1)
