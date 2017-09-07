@@ -75,6 +75,9 @@
 (when (display-graphic-p) ;;Only on gui
   ;; Starts emacs maximixed
   (add-to-list 'default-frame-alist '(fullscreen . maximized))
+  ;; Load the waher-theme
+  (require 'waher-theme)
+  (load-theme 'waher t)
   ;; Disable the scroll bar
   (scroll-bar-mode -1))
   
