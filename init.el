@@ -64,14 +64,6 @@
 
 ;; Window Style ;;
 
-;; Modified waher theme:
-
-;;`(default                             ((((class color) (min-colors 88)) (:background "#000000" :foreground "#CEDBE7"))
-;;`(default                             ((((class color) (min-colors 88)) (:background "#000000" :foreground "green"))
-
-;; sha256sum original: 7b4d9b8a6ada8e24ac9eecd057093b0572d7008dbd912328231d0cada776065a
-;; sha256sum modified: 0620c07c70373d3ce4ddca072de8bdfcac4438810d2acf46db8c72b0a125140d
-
 (when (display-graphic-p) ;;Only on gui
   ;; Starts emacs maximixed
   (add-to-list 'default-frame-alist '(fullscreen . maximized))
