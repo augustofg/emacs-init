@@ -150,6 +150,9 @@
 
 ;; Packages config ;;
 
+;; Defaults to octave-mode when opening .m files
+(add-to-list 'auto-mode-alist '("\\.m$" . octave-mode))
+
 ;; Enables ace-jump-mode
 (require 'ace-jump-mode)
 (define-key global-map (kbd "C-c v") 'ace-jump-mode)
