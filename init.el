@@ -105,6 +105,9 @@
 ;; Decode GDB octal escapes
 (setq gdb-mi-decode-strings t)
 
+;; Tell custom to don't write its stuff into init.el
+(setq custom-file "~/.emacs.d/custom-init.el")
+
 ;;;;
 
 ;; Shortcuts ;;
