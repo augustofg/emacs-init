@@ -331,6 +331,15 @@
 
 ;; Other functions ;;
 
+(defun spell (language)
+  "Enable flyspell in this buffer for english or portuguese"
+  (interactive "sLanguage [eng]: ")
+  (if (string= "pt" language)
+	  (ispell-change-dictionary "pt_BR"))
+  (if (or (string= "en" language) (string= "" language))
+	  (ispell-change-dictionary "en_US"))
+  (flyspell-mode 1))
+
 ;; Automatic header creation
 (defun create-c-header (headername)
   "Create a simple C header template"
