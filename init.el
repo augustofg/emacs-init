@@ -245,7 +245,7 @@
 
 ;;;;
 
-;; Insert Funtions ;;
+;; Insert Functions ;;
 
 ;; Duplicate line function
 (defun duplicate-line()
