@@ -103,6 +103,9 @@
 ;; Tell custom to don't write its stuff into init.el
 (setq custom-file "~/.emacs.d/custom-init.el")
 
+;; Disable the startup screen
+(setq inhibit-startup-screen t)
+
 ;;;;
 
 ;; Shortcuts ;;
