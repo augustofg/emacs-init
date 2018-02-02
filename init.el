@@ -121,6 +121,13 @@
 
 ;; Packages config ;;
 
+;; Load gnus configuration if available
+(let (gnus-personal)
+  (progn
+	(setq gnus-personal (concat default-directory ".emacs.d/gnus-personal.el"))
+	(if (file-exists-p gnus-personal)
+		 (load gnus-personal))))
+
 ;; Defaults to octave-mode when opening .m files
 (add-to-list 'auto-mode-alist '("\\.m$" . octave-mode))
 
