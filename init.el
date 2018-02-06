@@ -121,6 +121,9 @@
 
 ;; Packages config ;;
 
+;; Sort thread by date
+(setq gnus-thread-sort-functions '(gnus-thread-sort-by-most-recent-date))
+
 ;; Load gnus configuration if available
 (let (gnus-personal)
   (progn
