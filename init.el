@@ -121,6 +121,10 @@
 
 ;; Packages config ;;
 
+;; Enable deleting trailing whitespace on all programming modes
+(require 'ws-butler)
+(add-hook 'prog-mode-hook #'ws-butler-mode)
+
 ;; Sort thread by date
 (setq gnus-thread-sort-functions '(gnus-thread-sort-by-most-recent-date))
 
