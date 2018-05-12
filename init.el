@@ -125,6 +125,10 @@
 (require 'ws-butler)
 (add-hook 'prog-mode-hook #'ws-butler-mode)
 
+;; Multiple cursors
+(require 'multiple-cursors)
+(global-set-key (kbd "C-c m") 'mc/mark-all-like-this)
+
 ;; Sort thread by date
 (setq gnus-thread-sort-functions '(gnus-thread-sort-by-most-recent-date))
 
