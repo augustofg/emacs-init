@@ -129,6 +129,49 @@
 (require 'multiple-cursors)
 (global-set-key (kbd "C-c m") 'mc/mark-all-like-this)
 
+;; Load mu4e
+(require 'mu4e)
+
+;; Maildir location
+(setq mu4e-maildir (expand-file-name "~/mbsync"))
+
+;; Configure Gnus dired to allow attaching files with mu4e
+(require 'gnus-dired)
+;; make the `gnus-dired-mail-buffers' function also work on
+;; message-mode derived modes, such as mu4e-compose-mode
+(defun gnus-dired-mail-buffers ()
+  "Return a list of active message buffers."
+  (let (buffers)
+    (save-current-buffer
+      (dolist (buffer (buffer-list t))
+        (set-buffer buffer)
+        (when (and (derived-mode-p 'message-mode)
+                (null message-sent-message-via))
+          (push (buffer-name buffer) buffers))))
+    (nreverse buffers)))
+
+(setq gnus-dired-mail-mode 'mu4e-user-agent)
+(add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode)
+
+;;command used to get mail
+;; use this for testing
+(setq mu4e-get-mail-command "true")
+;; use this to sync with mbsync
+(setq mu4e-get-mail-command "mbsync augusto-gmail")
+
+;;rename files when moving
+;;NEEDED FOR MBSYNC
+(setq mu4e-change-filenames-when-moving t)
+(setq mu4e-trash-folder  "/[Gmail].Lixeira")
+(setq mu4e-headers-results-limit 500)
+(setq mu4e-use-fancy-chars nil)
+
+;;set up queue for offline email
+;;use mu mkdir  ~/Maildir/queue to set up first
+(setq smtpmail-queue-mail nil  ;; start in normal mode
+      smtpmail-queue-dir   "~/mbsync/augusto-gmail")
+
+
 ;; Sort thread by date
 (setq gnus-thread-sort-functions '(gnus-thread-sort-by-most-recent-date))
 
