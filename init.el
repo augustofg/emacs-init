@@ -185,11 +185,6 @@
 ;; Defaults to octave-mode when opening .m files
 (add-to-list 'auto-mode-alist '("\\.m$" . octave-mode))
 
-;; Enables ace-jump-mode
-(require 'ace-jump-mode)
-(define-key global-map (kbd "C-c v") 'ace-jump-mode)
-(global-set-key (kbd "<menu>") 'ace-jump-mode)
-
 ;; Enables images with w3m
 (setq w3m-default-display-inline-images t)
 
