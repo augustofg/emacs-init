@@ -370,6 +370,15 @@
 
 ;; Other functions ;;
 
+;; Proper C-w behavior (borrowed from https://stackoverflow.com/a/14047437/3581311)
+(defun kill-region-or-backward-word ()
+  "If the region is active and non-empty, call `kill-region'.
+Otherwise, call `backward-kill-word'."
+  (interactive)
+  (call-interactively
+   (if (use-region-p) 'kill-region 'backward-kill-word)))
+(global-set-key (kbd "C-w") 'kill-region-or-backward-word)
+
 (defun spell (language)
   "Enable flyspell in this buffer for english or portuguese"
   (interactive "sLanguage [eng]: ")
