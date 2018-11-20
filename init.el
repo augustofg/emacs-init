@@ -220,7 +220,7 @@
 							  (interactive)
 							  (local-set-key (kbd "C-c m") '(lambda ()
 															  (interactive)
-															  (my-insert-pair ?$ ?$)))))
+															  (my-insert-pair "$" "$")))))
 
 ;; Enables ido
 (require 'ido)
@@ -336,13 +336,13 @@
 ;; Double quotes insertion
 (defun insert-double-quotes()
   (interactive)
-  (my-insert-pair  ?" ?"))
+  (my-insert-pair  "\"" "\""))
 (global-set-key (kbd "C-c a") 'insert-double-quotes)
 
 ;; Simple quotes insertion
 (defun insert-simple-quotes()
   (interactive)
-  (my-insert-pair  ?' ?'))
+  (my-insert-pair  "'" "'"))
 (global-set-key (kbd "C-c x") 'insert-simple-quotes)
 
 ;; Braket insertion
