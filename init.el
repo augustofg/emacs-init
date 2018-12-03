@@ -328,6 +328,12 @@
 (global-set-key (kbd "C-c n") 'insert-curly-braces-next)
 
 ;; Parenthesis insertion
+(defun tag-insert()
+  (interactive)
+  (my-insert-pair "<" ">"))
+(global-set-key (kbd "C-c ,") 'tag-insert)
+
+;; Parenthesis insertion
 (defun paren-insert()
   (interactive)
   (my-insert-pair ?( ?)))
