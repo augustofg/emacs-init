@@ -139,7 +139,7 @@
 (require 'mu4e)
 
 ;; Maildir location
-(setq mu4e-maildir (expand-file-name "~/mbsync"))
+(setq mu4e-maildir (expand-file-name "~/mail/"))
 
 ;; Configure Gnus dired to allow attaching files with mu4e
 (require 'gnus-dired)
@@ -163,19 +163,19 @@
 ;; use this for testing
 (setq mu4e-get-mail-command "true")
 ;; use this to sync with mbsync
-(setq mu4e-get-mail-command "mbsync augusto-gmail")
+(setq mu4e-get-mail-command "mbsync personal work")
 
 ;;rename files when moving
 ;;NEEDED FOR MBSYNC
 (setq mu4e-change-filenames-when-moving t)
-(setq mu4e-trash-folder  "/[Gmail].Lixeira")
+(setq mu4e-trash-folder  "/trash")
 (setq mu4e-headers-results-limit 500)
 (setq mu4e-use-fancy-chars nil)
 
 ;;set up queue for offline email
 ;;use mu mkdir  ~/Maildir/queue to set up first
 (setq smtpmail-queue-mail nil  ;; start in normal mode
-      smtpmail-queue-dir   "~/mbsync/augusto-gmail")
+      smtpmail-queue-dir   "~/mail/queue")
 
 
 ;; Sort thread by date
