@@ -123,6 +123,9 @@
 ;; Compile Command
 (global-set-key "\C-x\C-m" 'compile)
 
+;; Substitute string in a rectangular selection
+(global-set-key (kbd "C-c <SPC>") 'string-rectangle)
+
 ;;;;
 
 ;; Packages config ;;
