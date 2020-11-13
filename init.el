@@ -126,6 +126,9 @@
 ;; Substitute string in a rectangular selection
 (global-set-key (kbd "C-c <SPC>") 'string-rectangle)
 
+;; Indent region
+(global-set-key (kbd "C-c .") 'indent-region)
+
 ;;;;
 
 ;; Packages config ;;
