@@ -92,6 +92,11 @@
 
 ;; Shortcuts ;;
 
+;; Create new shell buffer
+(global-set-key (kbd "C-c t") '(lambda (shell-buffer-name)
+								 (interactive "sShell name: ")
+								 (shell shell-buffer-name)))
+
 ;; Comment region
 (global-set-key (kbd "M-[") 'comment-region)
 
