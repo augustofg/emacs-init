@@ -277,12 +277,6 @@
 (add-hook 'irony-mode-hook 'my-irony-mode-hook)
 (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 
-;; Enables google-translate
-(require 'google-translate)
-(require 'google-translate-default-ui)
-(global-set-key (kbd "C-c t") 'google-translate-at-point)
-(global-set-key (kbd "C-c T") 'google-translate-query-translate)
-
 ;; Relative line numbering mode
 (require 'linum-relative)
 (linum-relative-on)

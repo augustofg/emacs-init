@@ -26,7 +26,7 @@
   "Install some neat packages"
   (interactive)
   (let (package-list)
-	(setq package-list '(w3m magit auctex irony company-irony company-jedi linum-relative yasnippet waher-theme google-translate use-package rust-mode flycheck-rust company-racer racer julia-mode julia-repl markdown-mode bison-mode ws-butler multiple-cursors))
+	(setq package-list '(w3m magit auctex irony company-irony company-jedi linum-relative yasnippet waher-theme use-package rust-mode flycheck-rust company-racer racer julia-mode julia-repl markdown-mode bison-mode ws-butler multiple-cursors))
 	(package-refresh-contents)
 	(package-initialize)
 	(dolist (package package-list)
