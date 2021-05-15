@@ -33,7 +33,7 @@
 (setq-default tab-always-indent t)
 (setq c-default-style "linux" c-basic-offset 4)
 
-(add-hook 'c-mode-common-hook
+(add-hook 'prog-mode-hook
   (lambda()
     (require 'dtrt-indent)
     (dtrt-indent-mode t)))
