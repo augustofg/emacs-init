@@ -205,9 +205,6 @@
 ;; Defaults to octave-mode when opening .m files
 (add-to-list 'auto-mode-alist '("\\.m$" . octave-mode))
 
-;; Enables images with w3m
-(setq w3m-default-display-inline-images t)
-
 ;; Relative line numbering
 (require 'linum-relative)
 
