@@ -1,4 +1,4 @@
-;; Copyright © 2017 Augusto Fraga Giachero
+;; Copyright © 2017-2022 Augusto Fraga Giachero
 ;;
 ;; Permission is hereby granted, free of charge, to any person obtaining a copy
 ;; of this software and associated documentation files (the "Software"), to deal
@@ -134,6 +134,9 @@
 ;; Indent region
 (global-set-key (kbd "C-c .") 'indent-region)
 
+;; LSP jump do definition
+(global-set-key (kbd "C-c k") 'lsp-find-definition)
+
 ;;;;
 
 ;; Packages config ;;
@@ -212,11 +215,6 @@
 (require 'yasnippet)
 (yas-global-mode 1)
 
-;; Enables company and company-irony
-(eval-after-load 'company
-  '(add-to-list 'company-backends 'company-irony))
-(add-hook 'after-init-hook 'global-company-mode)
-
 ;; Sets a delay of 0.2 seconds for company
 (setq company-idle-delay 0.2)
 
@@ -224,11 +222,6 @@
 (add-hook 'git-commit-mode-hook #'(lambda ()
 									(ispell-change-dictionary "en_US")
 									(flyspell-mode)))
-
-;; Enables company-jedi
-(defun my/python-mode-hook ()
-  (add-to-list 'company-backends 'company-jedi))
-(add-hook 'python-mode-hook 'my/python-mode-hook)
 
 ;; Enables flyspell on latex files
 (require 'tex)
@@ -253,41 +246,67 @@
 ;; Ido buffer navigation keystroke
 (global-set-key (kbd "C-ç") 'ido-switch-buffer)
 
-;; Rust autocomplete
-(add-hook 'rust-mode-hook #'racer-mode)
-(add-hook 'racer-mode-hook #'eldoc-mode)
-(add-hook 'racer-mode-hook #'company-mode)
-(require 'rust-mode)
-(define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
-(setq company-tooltip-align-annotations t)
-(setq racer-rust-src-path "/usr/src/rust/src/")
-
-;; Irony configuration
-(setq company-irony-ignore-case t)
-(add-hook 'c++-mode-hook 'my-irony-mode)
-(add-hook 'c-mode-hook 'my-irony-mode)
-(add-hook 'objc-mode-hook 'my-irony-mode)
-
-(defun my-irony-mode ()
-  (when (member major-mode irony-supported-major-modes)
-    (irony-mode 1)))
-
-;; replace the `completion-at-point' and `complete-symbol' bindings in
-;; irony-mode's buffers by irony-mode's function
-(defun my-irony-mode-hook ()
-  (define-key irony-mode-map [remap completion-at-point]
-    'irony-completion-at-point-async)
-  (define-key irony-mode-map [remap complete-symbol]
-    'irony-completion-at-point-async))
-(add-hook 'irony-mode-hook 'my-irony-mode-hook)
-(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-
 ;; Relative line numbering mode
 (require 'linum-relative)
 (linum-relative-on)
 
 ;; Magit status buffer
 (global-set-key (kbd "C-x g") 'magit-status)
+
+;; Emacs LSP
+(use-package lsp-mode
+  :defer t
+  :ensure t
+  :commands lsp
+  :config
+  (setq lsp-log-io nil
+        lsp-auto-configure t
+        lsp-auto-guess-root t
+        lsp-enable-completion-at-point t
+        lsp-enable-xref t
+        lsp-prefer-flymake nil
+        lsp-use-native-json t
+        lsp-enable-indentation t
+        lsp-response-timeout 10
+        lsp-restart 'auto-restart
+        lsp-keep-workspace-alive t
+        lsp-eldoc-render-all nil
+        lsp-enable-snippet nil
+        lsp-enable-folding t)
+   ;;; lsp-ui gives us the blue documentation boxes and the sidebar info
+  (use-package lsp-ui
+    :defer t
+    :ensure t
+    :after lsp
+    :commands lsp-ui-mode
+    :config
+    (setq lsp-ui-sideline-ignore-duplicate t
+          lsp-ui-sideline-delay 0.5
+          lsp-ui-sideline-show-symbol t
+          lsp-ui-sideline-show-hover t
+          lsp-ui-sideline-show-diagnostics t
+          lsp-ui-sideline-show-code-actions t
+          lsp-ui-peek-always-show t
+          lsp-ui-doc-use-childframe t)
+    :bind
+    (:map lsp-ui-mode-map
+          ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
+          ([remap xref-find-references] . lsp-ui-peek-find-references))
+    :hook
+    ((lsp-mode . lsp-ui-mode)
+     (lsp-after-open . (lambda ()
+                         (lsp-ui-flycheck-enable t)
+                         (lsp-ui-sideline-enable t)
+                         (lsp-ui-imenu-enable t)
+                         (lsp-lens-mode t)
+                         (lsp-ui-peek-enable t)
+                         (lsp-ui-doc-enable t))))))
+
+;; C/C++/Rust/Python LSP mode
+(add-hook 'c++-mode-hook 'lsp)
+(add-hook 'c-mode-hook 'lsp)
+(add-hook 'rust-mode-hook 'lsp)
+(add-hook 'python-mode-hook 'lsp)
 
 ;;;;
 

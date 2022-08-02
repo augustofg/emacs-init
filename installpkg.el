@@ -1,4 +1,4 @@
-;; Copyright © 2017 Augusto Fraga Giachero
+;; Copyright © 2017-2022 Augusto Fraga Giachero
 ;;
 ;; Permission is hereby granted, free of charge, to any person obtaining a copy
 ;; of this software and associated documentation files (the "Software"), to deal
@@ -20,13 +20,13 @@
 
 ;;Install packages:
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 
 (defun install-default-pkg ()
   "Install some neat packages"
   (interactive)
   (let (package-list)
-	(setq package-list '(w3m magit auctex irony company-irony company-jedi linum-relative yasnippet waher-theme use-package rust-mode flycheck-rust company-racer racer julia-mode julia-repl markdown-mode bison-mode ws-butler multiple-cursors))
+	(setq package-list '(w3m magit auctex company-jedi linum-relative yasnippet waher-theme use-package rust-mode flycheck-rust julia-mode julia-repl markdown-mode bison-mode ws-butler multiple-cursors))
 	(package-refresh-contents)
 	(package-initialize)
 	(dolist (package package-list)
@@ -36,16 +36,16 @@
 ;; After install ;;
 
 ;; *buntu/debian:
-;; sudo apt-get install libclang-3.5-dev cmake python-virtualenv python-jedi python3-jedi w3m clang
+;; sudo apt-get install cmake python-virtualenv python3-jedi w3m clangd
+;; pip3 install python-lsp-server
 
 ;; debian:
 ;; sudo apt-get install python3-virtualenv
 
 ;; archlinux:
-;; sudo pacman -S python-virtualenv python2-virtualenv python-jedi python2-jedi cmake clang w3m
+;; sudo pacman -S python-virtualenv python-jedi cmake clang w3m
 
 ;; emacs:
-;; M-x irony-install-server
 ;; M-x jedi:install-server
 
 ;;;;
