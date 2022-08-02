@@ -302,6 +302,18 @@
                          (lsp-ui-peek-enable t)
                          (lsp-ui-doc-enable t))))))
 
+;; VHDL mode
+(use-package vhdl-mode
+  :defer t
+  :config
+  (setq lsp-vhdl-server 'ghdl-ls
+        lsp-vhdl-server-path (executable-find "ghdl-ls")
+        lsp-vhdl--params nil)
+  (require 'lsp-vhdl)
+  :hook (vhdl-mode . (lambda()
+                       (lsp t)
+                       (flycheck-mode t))))
+
 ;; C/C++/Rust/Python LSP mode
 (add-hook 'c++-mode-hook 'lsp)
 (add-hook 'c-mode-hook 'lsp)
